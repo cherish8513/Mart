@@ -3,6 +3,7 @@ package com.example.api.mart.service.impl
 import com.example.api.mart.dto.ReceiptRequestDto
 import com.example.api.mart.service.BillService
 import com.example.api.static.exception.CustomException
+import org.junit.jupiter.api.DisplayName
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.util.concurrent.Callable

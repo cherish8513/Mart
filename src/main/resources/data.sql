@@ -1,11 +1,11 @@
 insert into tb_product(product_id, name, price, stock, delete_yn)
-values (1, '사과', 1000, 5, 'N');
+values (1, '사과', 1000, 6, 'N');
 
 insert into tb_product(product_id, name, price, stock, delete_yn)
-values (2, '배', 2000, 5, 'N');
+values (2, '배', 2000, 6, 'N');
 
 insert into tb_product(product_id, name, price, stock, delete_yn)
-values (3, '오렌지', 3000, 5, 'N');
+values (3, '오렌지', 3000, 6, 'N');
 
 insert into tb_country(country_id, name)
 values(1, '한국');

@@ -1,5 +1,6 @@
 package com.example.domain.mart
 
+import com.example.api.static.exception.CustomExceptionType
 import com.querydsl.core.annotations.QueryEntity
 import com.example.domain.Yn
 import jakarta.persistence.*
@@ -21,4 +22,11 @@ class TbProduct(
     @Enumerated(STRING)
     @Column
     var deleteYn: Yn,
-)
+) {
+    fun decrease(quantity: Int) {
+        if(stock - quantity < 0) {
+            throw CustomExceptionType.STOCK_NOT_NEGATIVE.toException("$name 품목의 재고가 부족합니다.")
+        }
+        stock -= quantity
+    }
+}

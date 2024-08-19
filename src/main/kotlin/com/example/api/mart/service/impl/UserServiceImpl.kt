@@ -60,7 +60,7 @@ class UserServiceImpl(
     }
 
     private fun sequenceRegistrationNumberGenerator(): Int {
-        return if (transactionalLockHelper.lockAndRegisterUnlock(REGISTRATION_NUMBER_LOCK_ID)) {
+        return if (transactionalLockHelper.lockAndRegisterUnlock(REGISTRATION_NUMBER_LOCK_ID, 20)) {
             userRepository.findLastRegistrationNumber()?.let { it + 1 } ?: 1
         } else {
             throw CustomExceptionType.RETRY_REQUEST.toException()

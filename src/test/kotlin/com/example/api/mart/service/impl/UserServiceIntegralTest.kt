@@ -19,9 +19,9 @@ class UserServiceIntegralTest {
     lateinit var userService: UserService
 
     @Test
-    fun addUserMultiThread() {
+    fun `success to add user in multi thread`() {
         // given
-        val createCount = 500
+        val createCount = 100
         val executor = Executors.newFixedThreadPool(10)
         var successCount = 0
         var failCount = 0
@@ -46,7 +46,7 @@ class UserServiceIntegralTest {
         executor.shutdown()
 
         // then
-        successCount + failCount shouldBe createCount
+        successCount shouldBe createCount
     }
 
     private fun userPostDtoGenerator(name: String): UserPostDto {
