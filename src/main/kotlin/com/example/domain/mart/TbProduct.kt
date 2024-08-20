@@ -21,7 +21,7 @@ class TbProduct(
     var stock: Int,
     @Enumerated(STRING)
     @Column
-    var deleteYn: Yn,
+    var deleteYn: Yn = Yn.N,
 ) {
     fun decrease(quantity: Int) {
         if(stock - quantity < 0) {
