@@ -3,7 +3,7 @@ package com.example.api.mart.repository.impl
 import com.example.api.mart.dto.BeforePayOrderPageGetRequestDto
 import com.example.api.mart.repository.DslOrderRepository
 import com.example.api.util.fetchPage
-import com.example.domain.OrderStatusCode
+import com.example.domain.OrderStatus
 import com.example.domain.mart.QTbOrder.tbOrder
 import com.example.domain.mart.TbOrder
 import com.querydsl.jpa.impl.JPAQueryFactory
@@ -17,7 +17,7 @@ class DslOrderRepositoryImpl(private val query: JPAQueryFactory) : DslOrderRepos
             .innerJoin(tbOrder.tbProduct).fetchJoin()
             .where(
                 tbOrder.userId.eq(beforePayOrderPageGetDto.userId),
-                tbOrder.orderStatusCode.eq(OrderStatusCode.PAY_BEFORE)
+                tbOrder.orderStatusCode.eq(OrderStatus.PAY_BEFORE)
             )
             .fetchPage(beforePayOrderPageGetDto.toPageable())
     }

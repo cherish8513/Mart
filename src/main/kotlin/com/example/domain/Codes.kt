@@ -5,18 +5,18 @@ interface ICode {
     val code: Char
 }
 
-enum class GenderCode(
+enum class Gender(
     override val description: String,
     override val code: Char
-): ICode {
+) : ICode {
     MALE("남", 'M'),
     FEMALE("여", 'F');
 }
 
-enum class OrderStatusCode(
+enum class OrderStatus(
     override val description: String,
     override val code: Char
-): ICode {
+) : ICode {
     PAY_BEFORE("결제전", '1'),
     PAY_AFTER("결제후", '2');
 }
@@ -25,6 +25,10 @@ enum class Yn {
     Y, N
 }
 
-enum class PaymentMethodCode {
-    CASH, CARD
+enum class PaymentMethod(
+    override val description: String,
+    override val code: Char
+) : ICode {
+    CASH("현금", '1'),
+    CARD("카드", '2')
 }

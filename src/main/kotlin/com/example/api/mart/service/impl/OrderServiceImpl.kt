@@ -11,10 +11,10 @@ import com.example.api.mart.service.OrderService
 import com.example.api.util.PageDto
 import com.example.api.util.assertNotNull
 import com.example.api.util.toPageDto
-import com.example.domain.OrderStatusCode
+import com.example.domain.OrderStatus
 import com.example.domain.mart.TbOrder
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Transactional(rollbackFor = [Exception::class])
 @Service
@@ -31,7 +31,7 @@ class OrderServiceImpl(
                 userId = orderPostDto.userId,
                 productId = orderPostDto.productId,
                 quantity = orderPostDto.quantity,
-                orderStatusCode = OrderStatusCode.PAY_BEFORE
+                orderStatus = OrderStatus.PAY_BEFORE
             )
         )
     }

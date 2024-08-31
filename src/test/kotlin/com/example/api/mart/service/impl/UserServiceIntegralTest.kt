@@ -3,7 +3,7 @@ package com.example.api.mart.service.impl
 import com.example.api.mart.dto.UserPostDto
 import com.example.api.mart.service.UserService
 import com.example.api.static.exception.CustomException
-import com.example.domain.GenderCode
+import com.example.domain.Gender
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -38,7 +38,7 @@ class UserServiceIntegralTest {
                 it.get()
                 successCount++
             } catch (e: ExecutionException) {
-                if(e.cause is CustomException) {
+                if (e.cause is CustomException) {
                     failCount++
                 }
             }
@@ -54,7 +54,7 @@ class UserServiceIntegralTest {
             countryId = 1L,
             receptionDate = LocalDateTime.now().toString(),
             name = name,
-            genderCode = GenderCode.MALE,
+            gender = Gender.MALE,
             birthYmd = "19960101"
         )
     }

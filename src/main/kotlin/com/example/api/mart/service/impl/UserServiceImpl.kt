@@ -1,6 +1,9 @@
 package com.example.api.mart.service.impl
 
-import com.example.api.mart.dto.*
+import com.example.api.mart.dto.UserDto
+import com.example.api.mart.dto.UserGetDto
+import com.example.api.mart.dto.UserPostDto
+import com.example.api.mart.dto.UserPutDto
 import com.example.api.mart.repository.CountryRepository
 import com.example.api.mart.repository.UserRepository
 import com.example.api.mart.service.TransactionalLockHelper
@@ -8,7 +11,6 @@ import com.example.api.mart.service.UserService
 import com.example.api.static.exception.CustomExceptionType
 import com.example.api.static.exception.CustomExceptionType.NOT_FOUND_USER
 import com.example.api.util.assertNotNull
-import com.example.api.util.isNotNull
 import com.example.domain.mart.TbUser
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -30,7 +32,7 @@ class UserServiceImpl(
                 registrationNumber = sequenceRegistrationNumberGenerator(),
                 phoneNumber = userPostDto.phoneNumber,
                 birthYmd = userPostDto.birthYmd,
-                genderCode = userPostDto.genderCode
+                gender = userPostDto.gender
             )
         ).userId.assertNotNull()
     }
@@ -39,7 +41,7 @@ class UserServiceImpl(
         val foundUser = userRepository.findByIdOrNull(userPutDto.userId).assertNotNull(NOT_FOUND_USER)
         foundUser.changeUserInfo(
             name = userPutDto.name,
-            genderCode = userPutDto.genderCode,
+            gender = userPutDto.gender,
             phoneNumber = userPutDto.phoneNumber
         )
     }
@@ -51,7 +53,7 @@ class UserServiceImpl(
         return UserDto(
             userId = foundUser.userId.assertNotNull(),
             name = foundUser.name,
-            genderCode = foundUser.genderCode,
+            gender = foundUser.gender,
             registrationNumber = foundUser.registrationNumber,
             birthday = foundUser.birthYmd,
             phoneNumber = foundUser.phoneNumber,

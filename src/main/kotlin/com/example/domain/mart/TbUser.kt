@@ -1,11 +1,11 @@
 package com.example.domain.mart
 
+import com.example.domain.Gender
 import com.querydsl.core.annotations.QueryEntity
-import com.example.domain.GenderCode
-import org.hibernate.annotations.DynamicUpdate
 import jakarta.persistence.*
-import jakarta.persistence.GenerationType.IDENTITY
 import jakarta.persistence.EnumType.STRING
+import jakarta.persistence.GenerationType.IDENTITY
+import org.hibernate.annotations.DynamicUpdate
 
 @Entity
 @QueryEntity
@@ -23,7 +23,7 @@ class TbUser(
     val registrationNumber: Int,
     @Column
     @Enumerated(STRING)
-    var genderCode: GenderCode? = null,
+    var gender: Gender? = null,
     @Column(length = 10)
     val birthYmd: String,
     @Column(length = 20)
@@ -33,11 +33,11 @@ class TbUser(
 ) {
     fun changeUserInfo(
         name: String?,
-        genderCode: GenderCode?,
+        gender: Gender?,
         phoneNumber: String?
     ) {
         this.name = name ?: this.name
-        this.genderCode = genderCode ?: this.genderCode
+        this.gender = gender ?: this.gender
         this.phoneNumber = phoneNumber ?: this.phoneNumber
     }
 }

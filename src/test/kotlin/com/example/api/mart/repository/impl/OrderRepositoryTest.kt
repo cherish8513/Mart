@@ -34,7 +34,7 @@ class OrderRepositoryTest {
 
             // then
             orders.map {
-                println("orderId : ${it.orderId} quantity: ${it.quantity} status: ${it.orderStatusCode}")
+                println("orderId : ${it.orderId} quantity: ${it.quantity} status: ${it.orderStatus}")
             }
         }
     }

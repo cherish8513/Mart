@@ -1,10 +1,10 @@
 package com.example.domain.mart
 
+import com.example.domain.OrderStatus
 import com.querydsl.core.annotations.QueryEntity
-import com.example.domain.OrderStatusCode
 import jakarta.persistence.*
-import jakarta.persistence.GenerationType.IDENTITY
 import jakarta.persistence.EnumType.STRING
+import jakarta.persistence.GenerationType.IDENTITY
 
 @Entity
 @QueryEntity
@@ -20,13 +20,12 @@ class TbOrder(
     val quantity: Int,
     @Enumerated(STRING)
     @Column
-    var orderStatusCode: OrderStatusCode,
+    var orderStatus: OrderStatus,
 ) {
+    @Column
+    val paymentId: Long? = null
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId", insertable = false, updatable = false)
     lateinit var tbProduct: TbProduct
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
-    lateinit var tbUser: TbUser
 }
