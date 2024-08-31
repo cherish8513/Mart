@@ -13,3 +13,8 @@ data class PaymentRequestDto(
     val orderIds: List<Long>,
     val paymentMethod: PaymentMethod,
 )
+
+data class DecreaseProductResultDto(
+    val success: List<ProductDto>,
+    val fail: List<ProductDto>
+)

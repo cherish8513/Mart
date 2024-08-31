@@ -1,9 +1,9 @@
 -- 제품들 생성
 insert into tb_product(product_id, name, price, stock, delete_yn)
-values (1, '사과', 1000, 6, 'N');
+values (1, '사과', 1000, 9, 'N');
 
 insert into tb_product(product_id, name, price, stock, delete_yn)
-values (2, '배', 2000, 6, 'N');
+values (2, '배', 2000, 9, 'N');
 
 insert into tb_product(product_id, name, price, stock, delete_yn)
 values (3, '오렌지', 3000, 6, 'N');

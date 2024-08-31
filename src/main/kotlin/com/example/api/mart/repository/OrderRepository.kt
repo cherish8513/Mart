@@ -1,6 +1,7 @@
 package com.example.api.mart.repository
 
 import com.example.api.mart.dto.BeforePayOrderPageGetRequestDto
+import com.example.domain.OrderStatus
 import com.example.domain.mart.TbOrder
 import org.springframework.data.domain.Page
 import org.springframework.data.jpa.repository.JpaRepository
@@ -10,18 +11,27 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface OrderRepository : JpaRepository<TbOrder, Long>, DslOrderRepository {
-    fun findByUserIdAndOrderIdIn(userId: Long, orderIds: List<Long>): List<TbOrder>
-
     @Modifying
     @Query(
         """
         UPDATE TbOrder o
-        SET o.orderStatus = 'PAY_AFTER', o.paymentId = :paymentId
+        SET o.orderStatus = :orderStatus, o.paymentId = :paymentId
         WHERE o.userId = :userId
         AND o.orderId IN :orderIds
     """
     )
-    fun modifyToPayAfter(userId: Long, orderIds: List<Long>, paymentId: Long)
+    fun modifyOrderStatusAndPaymentId(userId: Long, orderIds: List<Long>, orderStatus: OrderStatus, paymentId: Long)
+
+    @Query(
+        """
+        SELECT o
+          FROM TbOrder o
+          JOIN FETCH o.tbProduct
+         WHERE o.userId = :userId
+           AND o.paymentId = :paymentId
+    """
+    )
+    fun findByUserIdAndPaymentId(userId: Long, paymentId: Long): List<TbOrder>
 }
 
 @Repository

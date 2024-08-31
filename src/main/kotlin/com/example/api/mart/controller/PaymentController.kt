@@ -1,6 +1,5 @@
 package com.example.api.mart.controller
 
-import com.example.api.mart.dto.PaymentDto
 import com.example.api.mart.dto.PaymentRequestDto
 import com.example.api.mart.service.PaymentService
 import com.example.api.util.ResponseDto
@@ -15,7 +14,7 @@ class PaymentController(
     private val paymentService: PaymentService
 ) {
     @PostMapping
-    fun requestBill(@RequestBody paymentRequestDto: PaymentRequestDto): ResponseDto<PaymentDto> {
+    fun requestPayment(@RequestBody paymentRequestDto: PaymentRequestDto): ResponseDto<Unit> {
         return ResponseDto(paymentService.requestPayment(paymentRequestDto))
     }
 }

@@ -28,4 +28,8 @@ class TbOrder(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId", insertable = false, updatable = false)
     lateinit var tbProduct: TbProduct
+
+    fun getTotalPrice(): Int {
+        return quantity * tbProduct.price
+    }
 }

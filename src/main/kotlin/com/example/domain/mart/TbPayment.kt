@@ -15,6 +15,4 @@ class TbPayment(
     @Column
     @Enumerated(STRING)
     val paymentMethod: PaymentMethod,
-    @Column
-    val price: Int,
 )
