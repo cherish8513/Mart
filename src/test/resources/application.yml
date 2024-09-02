@@ -8,8 +8,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    show-sql: true
-    generate-ddl: true
+    show_sql: true
     defer-datasource-initialization: true
     properties:
       hibernate:
@@ -28,6 +27,6 @@ logging:
   level:
     org:
       hibernate:
-        type:
-          descriptor:
-            sql: trace
+        orm:
+          jdbc:
+            bind: trace

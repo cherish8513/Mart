@@ -1,11 +1,13 @@
 package com.example.api.mart.service.impl
 
+import com.example.api.mart.dto.DeliveryRequestDto
 import com.example.api.mart.dto.PaymentRequestDto
 import com.example.api.mart.service.PaymentService
 import com.example.api.static.exception.CustomException
 import com.example.domain.PaymentMethod
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import shouldBe
 import java.util.concurrent.Callable
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.Executors
@@ -37,13 +39,22 @@ class PaymentServiceIntegralTest {
         )
 
         // when
-        val tasks = paymentTestSamples.map { sample ->
+        val afterPayments = paymentTestSamples.map {
+            paymentService.requestPayment(
+                PaymentRequestDto(
+                    userId = it.userId,
+                    orderIds = it.orderIds,
+                    paymentMethod = PaymentMethod.CARD
+                )
+            )
+        }
+
+        val tasks = afterPayments.map { toDelivery ->
             Callable {
-                paymentService.requestPayment(
-                    PaymentRequestDto(
-                        userId = sample.userId,
-                        orderIds = sample.orderIds,
-                        paymentMethod = PaymentMethod.CARD
+                paymentService.prepareDelivery(
+                    DeliveryRequestDto(
+                        userId = toDelivery.userId,
+                        paymentId = toDelivery.paymentId
                     )
                 )
             }
@@ -65,8 +76,7 @@ class PaymentServiceIntegralTest {
         }
 
         // then
-        println(successCount)
-        println(failCount)
+        successCount shouldBe paymentTestSamples.size
     }
 
     data class PaymentTestSample(

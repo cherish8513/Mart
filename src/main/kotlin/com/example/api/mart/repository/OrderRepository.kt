@@ -26,7 +26,6 @@ interface OrderRepository : JpaRepository<TbOrder, Long>, DslOrderRepository {
         """
         SELECT o
           FROM TbOrder o
-          JOIN FETCH o.tbProduct
          WHERE o.userId = :userId
            AND o.paymentId = :paymentId
     """

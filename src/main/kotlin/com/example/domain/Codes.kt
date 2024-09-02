@@ -20,6 +20,7 @@ enum class OrderStatus(
     PAY_BEFORE("결제전", '1'),
     PAY_AFTER("결제후", '2'),
     PAY_CANCEL("결제취소", '3'),
+    PREPARE_DELIVERY("배송준비", '4'),
 }
 
 enum class Yn {

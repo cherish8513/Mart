@@ -39,16 +39,12 @@ dependencies {
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     // 내장 redis 서버 사용
-    implementation("it.ozimov:embedded-redis:0.7.3")
+    implementation("it.ozimov:embedded-redis:0.7.2")
 
     runtimeOnly("com.h2database:h2")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.assertj:assertj-core")
-}
-
-configurations.all {
-    exclude("ch.qos.logback","logback-classic")
 }
 
 tasks.withType<KotlinCompile> {
